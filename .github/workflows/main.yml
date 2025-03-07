@@ -2,6 +2,7 @@ name: Tazkarti Monitor
 on:
   schedule:
     - cron: "*/30 * * * *"  # كل 30 دقيقة
+  workflow_dispatch:  # تشغيل يدوي
 jobs:
   run:
     runs-on: ubuntu-latest

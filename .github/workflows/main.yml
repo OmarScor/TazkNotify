@@ -1,22 +1,20 @@
-name: Tazkarti Monitor  # اسم السير العمل
+name: Tazkarti Monitor
 on:
   schedule:
-    - cron: "*/30 * * * *"  # يشغل الكود كل 30 دقيقة
+    - cron: "*/30 * * * *"  # كل 30 دقيقة
 jobs:
   run:
-    runs-on: ubuntu-latest  # نوع النظام التشغيلي
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code  # تنزيل الكود
+      - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Install dependencies  # تثبيت المتطلبات
+      - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y chromium-browser chromium-chromedriver
           pip install -r requirements.txt
-
-      - name: Run script  # تشغيل البرنامج
+      - name: Run script
         env:
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}  # توكن البوت
-          CHAT_ID: ${{ secrets.CHAT_ID }}      # معرف الدردشة
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
         run: python monitor.py
